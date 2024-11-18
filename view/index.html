@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="details">
+
+    </div>
+    <script>
+
+        const Mapper = (data) => {
+            data.map((ele) => {
+                let div = document.createElement("div")
+
+                let name = document.createElement("h1");
+                name = ele.name
+
+                let email = document.createElement("h3")
+                email = ele.email
+
+                let password = document.createElement("h3")
+                password = ele.password
+
+                div.append(name, email, password)
+
+                document.querySelector(".details").append(div)
+            })
+        }
+        const api = async () => {
+            try {
+                let req = await fetch("http://localhost:8000/user")
+                let res = await req.json()
+                console.log(res);
+
+                Mapper(res)
+            } catch (error) {
+                console.log(error.message);
+
+            }
+        }
+
+
+        api()
+    </script>
+</body>
+
+</html>
